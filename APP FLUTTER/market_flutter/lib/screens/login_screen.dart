@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'register_screen.dart';
+import 'home_after_login.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -65,6 +66,10 @@ class LoginScreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (_) => const DashboardScreen()),
+                      );
                       // TODO: lógica de login
                     },
                     style: ElevatedButton.styleFrom(
