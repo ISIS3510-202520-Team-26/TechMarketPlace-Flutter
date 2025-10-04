@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$KycVerification {
 
-@UuidConverter() Uuid get id;@UuidConverter() Uuid get userId; String get provider; KycStatus get status; String? get documentType;/// Encrypted document number (base64-encoded bytes in transport).
- List<int>? get documentNumberEnc; List<String> get evidenceUrls; String? get notes;@UtcDateTimeConverter() DateTime get createdAt;@UtcDateTimeConverter() DateTime get updatedAt;
+@UuidConverter() Uuid get id;@UuidConverter() Uuid get userId; String get provider; KycStatus get status; String? get documentType; List<int>? get documentNumberEnc; List<String> get evidenceUrls; String? get notes;@UtcDateTimeConverter() DateTime get createdAt;@UtcDateTimeConverter() DateTime get updatedAt;
 /// Create a copy of KycVerification
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -245,9 +244,7 @@ class _KycVerification implements KycVerification {
 @override final  String provider;
 @override final  KycStatus status;
 @override final  String? documentType;
-/// Encrypted document number (base64-encoded bytes in transport).
  final  List<int>? _documentNumberEnc;
-/// Encrypted document number (base64-encoded bytes in transport).
 @override List<int>? get documentNumberEnc {
   final value = _documentNumberEnc;
   if (value == null) return null;

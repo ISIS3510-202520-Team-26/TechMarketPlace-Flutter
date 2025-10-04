@@ -1,9 +1,7 @@
-// lib/models/commons/converters.dart
 import 'package:json_annotation/json_annotation.dart';
 import 'value_objects.dart';
 import 'money.dart';
 
-/// Ensures DateTime is parsed and stored as UTC.
 class UtcDateTimeConverter implements JsonConverter<DateTime, String> {
   const UtcDateTimeConverter();
   @override
@@ -11,8 +9,6 @@ class UtcDateTimeConverter implements JsonConverter<DateTime, String> {
   @override
   String toJson(DateTime object) => object.toUtc().toIso8601String();
 }
-
-/// UUID string <-> Uuid VO.
 class UuidConverter implements JsonConverter<Uuid, String> {
   const UuidConverter();
   @override
@@ -21,7 +17,6 @@ class UuidConverter implements JsonConverter<Uuid, String> {
   String toJson(Uuid object) => object.asString;
 }
 
-/// Map<String,dynamic> with null-safe behavior.
 class JsonMapConverter implements JsonConverter<JsonMap, Map<String, dynamic>?> {
   const JsonMapConverter();
   @override
@@ -30,8 +25,6 @@ class JsonMapConverter implements JsonConverter<JsonMap, Map<String, dynamic>?> 
   Map<String, dynamic> toJson(JsonMap object) => object;
 }
 
-/// Money <-> embedded object {"amount_cents":..,"currency":..}
-/// NOTE: This is used for Domain JSON only. API DTOs keep flat fields.
 class MoneyConverter implements JsonConverter<Money, Map<String, dynamic>> {
   const MoneyConverter();
   @override

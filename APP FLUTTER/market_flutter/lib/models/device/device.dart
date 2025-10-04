@@ -14,7 +14,6 @@ abstract class Device with _$Device {
     @UuidConverter() Uuid? userId,
     required DevicePlatform platform,
     String? deviceModel,
-    /// Encrypted push token (base64 bytes).
     List<int>? pushTokenEnc,
     @Default(false) bool isVerified,
     @Default(<String, dynamic>{}) JsonMap metadata,

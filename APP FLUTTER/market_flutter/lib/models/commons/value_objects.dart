@@ -5,7 +5,6 @@ part 'value_objects.g.dart';
 
 typedef JsonMap = Map<String, dynamic>;
 
-/// UUID value object (string-based) with regex validation.
 @freezed
 abstract class Uuid with _$Uuid {
   const Uuid._();
@@ -24,7 +23,6 @@ abstract class Uuid with _$Uuid {
   String get asString => value;
 }
 
-/// Email value object (basic validation).
 @freezed
 abstract class Email with _$Email {
   const Email._();
@@ -42,7 +40,6 @@ abstract class Email with _$Email {
   String get asString => value;
 }
 
-/// Phone value object (very light validation).
 @freezed
 abstract class Phone with _$Phone {
   const Phone._();
@@ -60,7 +57,6 @@ abstract class Phone with _$Phone {
   String get asString => value;
 }
 
-/// ISO-4217 currency code (3 letters).
 @freezed
 abstract class CurrencyCode with _$CurrencyCode {
   const CurrencyCode._();
@@ -78,7 +74,6 @@ abstract class CurrencyCode with _$CurrencyCode {
   String get asString => value;
 }
 
-/// Rating 1..5
 @freezed
 abstract class Rating with _$Rating {
   const Rating._();

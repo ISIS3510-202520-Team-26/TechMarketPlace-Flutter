@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pagination.freezed.dart';
 part 'pagination.g.dart';
 
-/// Generic page response metadata.
 @freezed
 abstract class PageMeta with _$PageMeta {
   const factory PageMeta({

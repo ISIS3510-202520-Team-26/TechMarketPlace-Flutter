@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Device {
 
-@UuidConverter() Uuid get id;@UuidConverter() Uuid? get userId; DevicePlatform get platform; String? get deviceModel;/// Encrypted push token (base64 bytes).
- List<int>? get pushTokenEnc; bool get isVerified; JsonMap get metadata;@UtcDateTimeConverter() DateTime get createdAt;@UtcDateTimeConverter() DateTime get updatedAt;
+@UuidConverter() Uuid get id;@UuidConverter() Uuid? get userId; DevicePlatform get platform; String? get deviceModel; List<int>? get pushTokenEnc; bool get isVerified; JsonMap get metadata;@UtcDateTimeConverter() DateTime get createdAt;@UtcDateTimeConverter() DateTime get updatedAt;
 /// Create a copy of Device
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -246,9 +245,7 @@ class _Device implements Device {
 @override@UuidConverter() final  Uuid? userId;
 @override final  DevicePlatform platform;
 @override final  String? deviceModel;
-/// Encrypted push token (base64 bytes).
  final  List<int>? _pushTokenEnc;
-/// Encrypted push token (base64 bytes).
 @override List<int>? get pushTokenEnc {
   final value = _pushTokenEnc;
   if (value == null) return null;

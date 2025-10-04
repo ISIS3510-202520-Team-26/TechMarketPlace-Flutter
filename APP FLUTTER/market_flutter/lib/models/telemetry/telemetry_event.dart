@@ -6,7 +6,6 @@ import '../commons/value_objects.dart' show JsonMap;
 part 'telemetry_event.freezed.dart';
 part 'telemetry_event.g.dart';
 
-/// Domain: TelemetryEvent (JSONB context for filters/sensors/AB flags).
 @freezed
 abstract class TelemetryEvent with _$TelemetryEvent {
   const factory TelemetryEvent({
@@ -39,7 +38,6 @@ abstract class TelemetryEvent with _$TelemetryEvent {
       _$TelemetryEventFromJson(json);
 }
 
-/// DTO (snake_case).
 @freezed
 abstract class TelemetryEventDto with _$TelemetryEventDto {
   const TelemetryEventDto._();

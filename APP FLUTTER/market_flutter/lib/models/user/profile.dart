@@ -5,7 +5,6 @@ import '../commons/converters.dart';
 part 'profile.freezed.dart';
 part 'profile.g.dart';
 
-/// Domain: Profile (aggregate for display & reputation).
 @freezed
 abstract class Profile with _$Profile {
   const factory Profile({
@@ -26,7 +25,6 @@ abstract class Profile with _$Profile {
       _$ProfileFromJson(json);
 }
 
-/// DTO (snake_case).
 @freezed
 abstract class ProfileDto with _$ProfileDto {
   const ProfileDto._();

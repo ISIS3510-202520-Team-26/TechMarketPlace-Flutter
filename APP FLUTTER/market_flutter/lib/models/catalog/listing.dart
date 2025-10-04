@@ -7,7 +7,6 @@ import '../commons/converters.dart';
 part 'listing.freezed.dart';
 part 'listing.g.dart';
 
-/// Domain: Listing (uses Money for price, JSONB for attributes/shipping).
 @freezed
 abstract class Listing with _$Listing {
   const factory Listing({
@@ -35,7 +34,6 @@ abstract class Listing with _$Listing {
       _$ListingFromJson(json);
 }
 
-/// DTO (DB contract: flat cents + currency)
 @freezed
 abstract class ListingDto with _$ListingDto {
   const ListingDto._();

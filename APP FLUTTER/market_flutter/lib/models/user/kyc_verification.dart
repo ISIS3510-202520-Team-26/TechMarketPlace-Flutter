@@ -6,7 +6,6 @@ import '../commons/converters.dart';
 part 'kyc_verification.freezed.dart';
 part 'kyc_verification.g.dart';
 
-/// Domain: KYC verification data (sensitive).
 @freezed
 abstract class KycVerification with _$KycVerification {
   const factory KycVerification({
@@ -15,7 +14,6 @@ abstract class KycVerification with _$KycVerification {
     required String provider,
     required KycStatus status,
     String? documentType,
-    /// Encrypted document number (base64-encoded bytes in transport).
     List<int>? documentNumberEnc,
     @Default(<String>[]) List<String> evidenceUrls,
     String? notes,
@@ -27,7 +25,6 @@ abstract class KycVerification with _$KycVerification {
       _$KycVerificationFromJson(json);
 }
 
-/// DTO (snake_case).
 @freezed
 abstract class KycVerificationDto with _$KycVerificationDto {
   const KycVerificationDto._();
