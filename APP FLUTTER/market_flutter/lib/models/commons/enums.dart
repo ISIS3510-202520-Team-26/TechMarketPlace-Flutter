@@ -1,4 +1,3 @@
-// lib/models/commons/enums.dart
 import 'package:json_annotation/json_annotation.dart';
 
 part 'enums.g.dart';

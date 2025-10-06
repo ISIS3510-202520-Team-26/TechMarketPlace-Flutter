@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
-@UuidConverter() Uuid get id; Email get email; Phone? get phone;/// Hash only for admin flows / never expose to client UI.
- String? get passwordHash; UserRole get role; KycStatus get kycStatus; bool get emailVerified; bool get phoneVerified;@UtcDateTimeConverter() DateTime get createdAt;@UtcDateTimeConverter() DateTime get updatedAt;@UtcDateTimeConverter() DateTime? get deletedAt;
+@UuidConverter() Uuid get id; Email get email; Phone? get phone; String? get passwordHash; UserRole get role; KycStatus get kycStatus; bool get emailVerified; bool get phoneVerified;@UtcDateTimeConverter() DateTime get createdAt;@UtcDateTimeConverter() DateTime get updatedAt;@UtcDateTimeConverter() DateTime? get deletedAt;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -256,7 +255,6 @@ class _User extends User {
 @override@UuidConverter() final  Uuid id;
 @override final  Email email;
 @override final  Phone? phone;
-/// Hash only for admin flows / never expose to client UI.
 @override final  String? passwordHash;
 @override final  UserRole role;
 @override final  KycStatus kycStatus;

@@ -6,7 +6,6 @@ import '../commons/converters.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
-/// Domain: User (includes sensitive fields; guard usage carefully).
 @freezed
 abstract class User with _$User {
   const User._();
@@ -14,7 +13,6 @@ abstract class User with _$User {
     @UuidConverter() required Uuid id,
     required Email email,
     Phone? phone,
-    /// Hash only for admin flows / never expose to client UI.
     String? passwordHash,
     required UserRole role,
     required KycStatus kycStatus,
@@ -28,7 +26,6 @@ abstract class User with _$User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 
-/// DTO aligned to API/DB (snake_case).
 @freezed
 abstract class UserDto with _$UserDto {
   const UserDto._();
