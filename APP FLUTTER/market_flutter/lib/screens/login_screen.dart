@@ -222,3 +222,5 @@ class _SocialSquare extends StatelessWidget {
     );
   }
 }
+
+// estado ok
