@@ -1,13 +1,15 @@
-abstract class AppRoutes {
-  static const root = '/';
-  static const search = '/search';
-  static const listing = '/listing/:id';
-  static const listingQuick = '/listing/:id/quick';
-  static const listingChat = '/listing/:id/chat';
-  static const checkout = '/checkout/:listingId';
-  static const insights = '/insights';
-  static const settings = '/settings';
+class AppRoutes {
+  static const String root = '/';
+  static const String search = '/search';
+  static const String listing = '/listing/:id';
+  static const String listingQuick = '/listing/:id/quick';
+  static const String listingChat = '/listing/:id/chat';
+  static const String checkout = '/checkout/:listingId';
+  static const String insights = '/insights';
+  static const String settings = '/settings';
 
-  static const paramListingId = 'id';
-  static const paramCheckoutListingId = 'listingId';
+  static String listingOf(String id) => '/listing/$id';
+  static String listingQuickOf(String id) => '/listing/$id/quick';
+  static String listingChatOf(String id) => '/listing/$id/chat';
+  static String checkoutOf(String listingId) => '/checkout/$listingId';
 }

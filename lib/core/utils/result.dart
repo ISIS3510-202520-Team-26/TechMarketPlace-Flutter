@@ -1,55 +1,59 @@
-import 'package:meta/meta.dart';
 import '../errors/failures.dart';
 
-@sealed
-abstract class Result<T> {
+sealed class Result<T> {
   const Result();
 
-  bool get isOk => this is Success<T>;
+  bool get isOk => this is Ok<T>;
   bool get isErr => this is Err<T>;
 
-  R fold<R>({
-    required R Function(T) ok,
-    required R Function(Failure) err,
-  }) {
+  T get value => (this as Ok<T>).value;
+  Failure get failure => (this as Err<T>).failure;
+
+  R when<R>({required R Function(T) ok, required R Function(Failure) err}) {
     final self = this;
-    if (self is Success<T>) return ok(self.value);
+    if (self is Ok<T>) return ok(self.value);
     return err((self as Err<T>).failure);
   }
 
-  Result<R> map<R>(R Function(T) mapValue) => fold(
-        ok: (v) => Success<R>(mapValue(v)),
-        err: (f) => Err<R>(f),
-      );
+  R fold<R>(R Function(Failure) onErr, R Function(T) onOk) {
+    final self = this;
+    if (self is Ok<T>) return onOk(self.value);
+    return onErr((self as Err<T>).failure);
+  }
 
-  Result<T> mapErr(Failure Function(Failure) mapFailure) => fold(
-        ok: (v) => Success<T>(v),
-        err: (f) => Err<T>(mapFailure(f)),
-      );
+  Result<U> map<U>(U Function(T) f) =>
+      when(ok: (v) => Ok<U>(f(v)), err: (e) => Err<U>(e));
 
-  T? get valueOrNull => switch (this) {
-        Success<T>(:final value) => value,
-        _ => null,
-      };
+  Result<U> flatMap<U>(Result<U> Function(T) f) =>
+      when(ok: (v) => f(v), err: (e) => Err<U>(e));
 
-  T get orThrow => fold(
-        ok: (v) => v,
-        err: (f) => throw StateError('Result.orThrow failure: $f'),
-      );
+  Result<T> tap(void Function(T) sideEffect) {
+    when(ok: (v) => sideEffect(v), err: (_) {});
+    return this;
+  }
+
+  Result<T> tapErr(void Function(Failure) sideEffect) {
+    when(ok: (_) {}, err: (e) => sideEffect(e));
+    return this;
+  }
+
+  T getOrElse(T Function() orElse) =>
+      when(ok: (v) => v, err: (_) => orElse());
+
+  Future<Result<U>> asyncMap<U>(Future<U> Function(T) f) async {
+    return when(
+      ok: (v) async => Ok<U>(await f(v)),
+      err: (e) async => Err<U>(e),
+    );
+  }
 }
 
-class Success<T> extends Result<T> {
-  const Success(this.value);
+class Ok<T> extends Result<T> {
   final T value;
-
-  @override
-  String toString() => 'Success($value)';
+  const Ok(this.value);
 }
 
 class Err<T> extends Result<T> {
-  const Err(this.failure);
   final Failure failure;
-
-  @override
-  String toString() => 'Err($failure)';
+  const Err(this.failure);
 }

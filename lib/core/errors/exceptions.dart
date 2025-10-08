@@ -1,31 +1,43 @@
-class AppException implements Exception {
-  AppException(this.message, {this.cause, this.code});
+class NetworkException implements Exception {
   final String message;
-  final Object? cause;
-  final String? code;
+  final int? statusCode;
+  const NetworkException(this.message, {this.statusCode});
 
   @override
-  String toString() => 'AppException(code=$code, message=$message, cause=$cause)';
+  String toString() => 'NetworkException($statusCode): $message';
 }
 
-class NetworkException extends AppException {
-  NetworkException(String message, {Object? cause, String? code, this.statusCode, this.url})
-      : super(message, cause: cause, code: code);
-  final int? statusCode;
-  final String? url;
+class CacheException implements Exception {
+  final String message;
+  const CacheException(this.message);
+
+  @override
+  String toString() => 'CacheException: $message';
 }
 
-class UnauthorizedException extends AppException {
-  UnauthorizedException(String message, {Object? cause, String? code})
-      : super(message, cause: cause, code: code);
+class SerializationException implements Exception {
+  final String message;
+  const SerializationException(this.message);
+
+  @override
+  String toString() => 'SerializationException: $message';
 }
 
-class NotFoundException extends AppException {
-  NotFoundException(String message, {Object? cause, String? code})
-      : super(message, cause: cause, code: code);
+class UnauthorizedException implements Exception {
+  final String message;
+  const UnauthorizedException(this.message);
+
+  @override
+  String toString() => 'UnauthorizedException: $message';
 }
 
-class CacheException extends AppException {
-  CacheException(String message, {Object? cause, String? code})
-      : super(message, cause: cause, code: code);
+
+class ServerException implements Exception {
+  final String message;
+  ServerException(this.message);
+  @override
+  String toString() => 'ServerException: $message';
 }
+
+
+
